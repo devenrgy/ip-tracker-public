@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Ip Address Tracker</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css"
+        integrity="sha512-EAgFb1TGFSRh1CCsDotrqJMqB2D+FLCOXAJTE16Ajphi73gQmfJS/LNl6AsjDqDht6Ls7Qr1KWsrJxyttEkxIA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ip-tracker-public/assets/apple-touch-icon-5568d764.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAvFJREFUWEftl0tIVFEYx/9nnj5yjCxKqJXZosIUF/ZQKIxoUbjJnmjbkBIHW5Q4YjS4CLJEcxEq4UKKXujCkhgiayGZCkHvQjBrUnMed94zd+6NMyN37N7rDNM4YwvP8t7D+X7nO9/3/59Dmpt5xTcV00CAGoDPRUoGMfNAZx6rayFVRmsjAbmakriiIDx4A6k22n+mbufibRIzqTbaePHn9dkKVJRpoVYC5nkO/a98SUuQLMCRvVpUHkgTgp6/wcDhlnAuC5QswNF9WhzbHwGovcnA7loF+E8ykK4lOHMoDZlpBD/maIF6UV6sRcl2NXJzFFAqAKuTx/tJFoMjPsxauai1EncNFOaroD+eKSz6y8Jh0zqFbBB/gMftAQ9GPwaWhIgboChfhbpFALFagQ3yaO5x4ftsUHbqsgB8mWbxeNiHGQsHXSZBebEGpQUaIeDbryyu33MlB8A8H0RTtxN+UZbrKjNQtE0dCsrzQG0bA0amlRPOQO9TD0xjfsnuCvJUqD8ZqZW2+y6Mf2Yl8xIGMHQ5MDUjrfSsDIIOvU4I2PfMg6HXUtCEAfTtDCyMVCNoO/ZczhYAHg170f9S6inLAOCAhZFmQKUEui9FAB6+8GJAxtQSBjB0OTE1I22xHJ0CrReyhAz0DnlgepOEI7hr8uLJiDS1e3aqca4iQwC41ufCu8kkFCHj5nGlx4nf9sgxaNRA09k12LJRGQKgikgt3ScjiAkfAQ1A7wqmsYgQle3SYPOGcHA6nk/4cWfQkxwhiiXFVgcHWidLXWhkM3C4RINTB9MFFatpZeD2hltN7AXjnwIhxSNEijI9F0T7AzeoYS01ZAGo5ZYWqMN3QguHiUUKJga4eMsRsubdOxbsWElAd00LbvRDAMHobgxZgGhplQOYs8WIEmXBVYC4M1C4VQX9iYjL1Xc4/tKAWF0h/h83QLqG4PTCnZCePVVC6vf/Olb+aVZltDcS8Cv0OCUGEn6e2xoIFCl+nnOdeezalj+LxON4X9Fx2AAAAABJRU5ErkJggg==">
+  <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAXNJREFUOE+tk00ogwEYx3/v++61yVckkhZFkxTlNEnJkcRBLrJ2XZKrWnEwx5Gc5DQnDkSKk4OPNCVlmeQrQjk42Mze7d2XtuVrS5t4zv/n1//5+AuDNs+YQMwK5PC7UmMIk4LJ9hyMN8saaKzRcPsY5ckTzRalxgGxuNqgl7Ca8tlwBlnaCmQLIA2w6Qyy+B+AnjYtzQaZq4cIxgYZjQiu6zCOTYUXf8J0on50YOnNxdiQgxKM4XSHKCkUaKqVcV2FsS++Zg+YXX7l8CycaBgdyKO+WsPIjJdnX9JFRgdDU158SlLc166ju1WLbcHHxV3k94D+Dh1dLVomHD4u77MEzK8r7LlUBAHGzflUVUgMT3+6yjhCJALumxDFBSL6Mon9E5W5NSV9iaVFIuZOHbvHIQ5OQ7xfYXUnQHOdjCSB6zLMynYANbnT7ztIfb13gMXuxR/4vHuq7mOEvwASYUoFVJaKlJeIHJ1/8ZueEFX4a5zfAMqC5RPL+0KWAAAAAElFTkSuQmCC">
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiIiwic2hvcnRfbmFtZSI6IiIsImljb25zIjpbeyJzcmMiOiIvYW5kcm9pZC1jaHJvbWUtMTkyeDE5Mi5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiIvYW5kcm9pZC1jaHJvbWUtNTEyeDUxMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dLCJ0aGVtZV9jb2xvciI6IiNmZmZmZmYiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2ZmZmZmZiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIn0=">
+  <script type="module" crossorigin src="/ip-tracker-public/assets/index-543f118b.js"></script>
+  <link rel="stylesheet" href="/ip-tracker-public/assets/index-e05aaf71.css">
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+  (g => {
+    var h, a, k, p = 'The Google Maps JavaScript API', c = 'google', l = 'importLibrary', q = '__ib__', m = document,
+      b = window
+    b = b[c] || (b[c] = {})
+    var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams,
+      u = () => h || (h = new Promise(async (f, n) => {
+        await (a = m.createElement('script'))
+        e.set('libraries', [...r] + '')
+        for (k in g) e.set(k.replace(/[A-Z]/g, t => '_' + t[0].toLowerCase()), g[k])
+        e.set('callback', c + '.maps.' + q)
+        a.src = `https://maps.${c}apis.com/maps/api/js?` + e
+        d[q] = f
+        a.onerror = () => h = n(Error(p + ' could not load.'))
+        a.nonce = m.querySelector('script[nonce]')?.nonce || ''
+        m.head.append(a)
+      }))
+    d[l] ? console.warn(p + ' only loads once. Ignoring:', g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+  })({
+    key: 'AIzaSyDtiadmBAGBXfoySaNk5YvNom_7KYvzEBs',
+    v: 'weekly',
+    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+    // Add other bootstrap parameters as needed, using camel case.
+  })
+</script>
+</body>
+</html>
